@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run TestNG",
+            "request": "launch",
+            "mainClass": "org.testng.TestNG",
+            "args": "testng.xml",
+            "classPaths": [
+                "bin",
+                "lib/*"
+            ]
+        }        
+    ]
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-11-29T16:53:31 WIB" name="Selenium Test Suite" finished-at="2024-11-29T16:55:00 WIB" duration-ms="89397">
+    <groups>
+    </groups>
+    <test started-at="2024-11-29T16:53:31 WIB" name="Periplus Tests" finished-at="2024-11-29T16:55:00 WIB" duration-ms="89397">
+      <class name="AppTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:AppTest@7a4ccb53]" started-at="2024-11-29T16:53:31 WIB" name="setUp" finished-at="2024-11-29T16:53:32 WIB" duration-ms="1018" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testAddToCart()[pri:0, instance:AppTest@7a4ccb53]" started-at="2024-11-29T16:53:32 WIB" name="testAddToCart" finished-at="2024-11-29T16:54:17 WIB" duration-ms="44927" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAddToCart -->
+        <test-method signature="testLogin()[pri:0, instance:AppTest@7a4ccb53]" started-at="2024-11-29T16:54:17 WIB" name="testLogin" finished-at="2024-11-29T16:54:50 WIB" duration-ms="33258" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:AppTest@7a4ccb53]" started-at="2024-11-29T16:54:50 WIB" name="tearDown" finished-at="2024-11-29T16:55:00 WIB" duration-ms="10165" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- AppTest -->
+    </test> <!-- Periplus Tests -->
+  </suite> <!-- Selenium Test Suite -->
+</testng-results>
