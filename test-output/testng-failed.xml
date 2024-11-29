@@ -5,10 +5,10 @@
     <classes>
       <class name="AppTest">
         <methods>
-          <include name="testAddToCartWithEdgeCase"/>
           <include name="tearDown"/>
           <include name="testLogin"/>
           <include name="setUp"/>
+          <include name="testAddToCart"/>
         </methods>
       </class> <!-- AppTest -->
     </classes>

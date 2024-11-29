@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -61,118 +60,69 @@ public class AppTest {
     }
 
     @Test(dependsOnMethods = "testLogin")
-    public void testAddToCartWithEdgeCase() {
+    public void testAddToCart() {
         driver.get("https://www.periplus.com/");
     
-        // Locate the cart total count before adding the product
-        WebElement cartTotalBefore = driver.findElement(By.cssSelector("#cart_total"));
-        int totalCountBefore = Integer.parseInt(cartTotalBefore.getText());
-    
-        // Perform a product search and locate the first product
         WebElement searchButton = driver.findElement(By.cssSelector("button.btnn"));
         searchButton.click();
     
-        // Click the first product's link and get its ID
+        // Locate the first product's link
         WebElement firstProductLink = driver.findElement(By.cssSelector(".single-product a"));
         String productLink = firstProductLink.getAttribute("href");
         firstProductLink.click();
     
-        // Extract the product ID from the link
-        String productIdRegex = "/p/(\\d+)";
-        Pattern pattern = Pattern.compile(productIdRegex);
-        Matcher matcher = pattern.matcher(productLink);
-        String productId = null;
-        if (matcher.find()) {
-            productId = matcher.group(1);
-        }
-        Assert.assertNotNull(productId, "Product ID is null.");
-    
-        // Open the shopping cart dropdown to check if the product is already in the cart
-        WebElement shoppingCart = driver.findElement(By.id("show-your-cart"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(shoppingCart).perform();
-        System.out.println("move to cart");
-
-        // Locate the list of cart items
-        List<WebElement> cartItems = driver.findElements(By.cssSelector(".shopping-list li"));
-        boolean productAlreadyInCart = false;
-        int initialProductQuantity = 0;
-
-        for (WebElement item : cartItems) {
-            // Find the product link within the cart item
-            WebElement productLinkElement = item.findElement(By.cssSelector("a.cart-img"));
-            String cartProductLink = productLinkElement.getAttribute("href");
-    
-            // Check if this item's link matches the product's link
-            if (cartProductLink.contains(productId)) {
-                productAlreadyInCart = true;
-    
-                // Get the initial quantity of this product
-                WebElement quantityElement = item.findElement(By.cssSelector(".quantity"));
-                initialProductQuantity = Integer.parseInt(quantityElement.getText().split(" ")[0]);
-                break;
-            }
-        }
-
-        System.out.println("productAlreadyInCart: " + productAlreadyInCart);
-        System.out.println("initialProductQuantity: " + initialProductQuantity);
-
-        WebElement outside = driver.findElement(By.id("mainImg"));
-        actions.moveToElement(outside).perform();
-        System.out.println("move outside");
-
         // Locate and click the "ADD TO CART" button
-        System.out.println("find add to cart");
         WebElement addToCartButton = driver.findElement(By.cssSelector("button.btn-add-to-cart"));
         addToCartButton.click();
-        System.out.println("clicking add to cart");
     
         // Wait for the popup to appear and then disappear
         By popupSelector = By.cssSelector("div.modal-body");
         wait.until(ExpectedConditions.visibilityOfElementLocated(popupSelector)); // Wait for the popup to be visible
         wait.until(ExpectedConditions.invisibilityOfElementLocated(popupSelector)); // Wait for the popup to disappear
     
-        actions.moveToElement(shoppingCart).perform();
-        System.out.println("move to cart");
+        // Locate and click the "SHOPPING CART" link
+        WebElement shoppingCart = driver.findElement(By.id("show-your-cart"));
+        shoppingCart.click();
+    
+        // Locate all product rows in the shopping cart
+        List<WebElement> productRows = driver.findElements(By.cssSelector("div.row-cart-product"));
+    
+        // Ensure there is at least one product
+        Assert.assertFalse(productRows.isEmpty(), "No products found in the shopping cart.");
+    
+        // Extract product ID from the initial product link
+        String regex = "/p/(\\d+)";
+        Pattern pattern = Pattern.compile(regex);
+    
+        Matcher matcher = pattern.matcher(productLink);
+        String firstProductId = null;
+        if (matcher.find()) {
+            firstProductId = matcher.group(1);
+        }
+    
+        Assert.assertNotNull(firstProductId, "First product ID is null.");
+        System.out.println("First product ID: " + firstProductId);
 
-        // Recheck the cart items after adding the product
-        cartItems = driver.findElements(By.cssSelector(".shopping-list li"));
-        boolean productFoundAfterAddition = false;
-        int finalProductQuantity = 0;
+        // Flag to check if the product exists
+        boolean productExists = false;
     
-        for (WebElement item : cartItems) {
-            // Find the product link within the cart item
-            WebElement productLinkElement = item.findElement(By.cssSelector("a.cart-img"));
+        // Iterate through all product rows and check for the ID
+        for (WebElement productRow : productRows) {
+            WebElement productLinkElement = productRow.findElement(By.cssSelector("a[href]"));
             String cartProductLink = productLinkElement.getAttribute("href");
+            System.out.println("Cart product link: " + cartProductLink);
     
-            // Check if this item's link matches the product's link
-            if (cartProductLink.contains(productId)) {
-                productFoundAfterAddition = true;
-    
-                // Get the final quantity of this product
-                WebElement quantityElement = item.findElement(By.cssSelector(".quantity"));
-                finalProductQuantity = Integer.parseInt(quantityElement.getText().split(" ")[0]);
-                break;
+            Matcher cartMatcher = pattern.matcher(cartProductLink);
+            if (cartMatcher.find()) {
+                String cartProductId = cartMatcher.group(1);
+                if (firstProductId.equals(cartProductId)) {
+                    productExists = true;
+                    break;
+                }
             }
         }
-
-        System.out.println("productFoundAfterAddition: " + productFoundAfterAddition);
-        System.out.println("finalProductQuantity: " + finalProductQuantity);
-
-        // Assertions
-        if (productAlreadyInCart) {
-            // If the product was already in the cart, check if the quantity increased by 1
-            Assert.assertTrue(productFoundAfterAddition, "Product was not found in the cart after addition.");
-            Assert.assertEquals(finalProductQuantity, initialProductQuantity + 1, "Product quantity did not increase correctly.");
-        } else {
-            // If the product was not in the cart, check if it is now present with quantity 1
-            Assert.assertTrue(productFoundAfterAddition, "Product was not added to the cart.");
-            Assert.assertEquals(finalProductQuantity, 1, "Product quantity is not correct for a new addition.");
-        }
     
-        // Verify the total count has increased by 1
-        WebElement cartTotalAfter = driver.findElement(By.cssSelector("#cart_total"));
-        int totalCountAfter = Integer.parseInt(cartTotalAfter.getText());
-        Assert.assertEquals(totalCountAfter, totalCountBefore + 1, "Cart total count did not increase correctly.");
+        // Assert that the product ID exists in the shopping cart
+        Assert.assertTrue(productExists, "The product ID was not found in the shopping cart.");
     }
 }

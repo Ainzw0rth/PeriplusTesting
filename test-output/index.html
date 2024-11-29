@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Selenium_Test_Suite" class="navigator-link">
-              <span class="suite-name border-failed">Selenium Test Suite</span>
+              <span class="suite-name border-passed">Selenium Test Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -92,21 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods, 1 failed,   1 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Selenium_Test_Suite" class="hide-methods failed suite-Selenium_Test_Suite"> (hide)</a> <!-- hide-methods failed suite-Selenium_Test_Suite -->
-                      <a href="#" panel-name="suite-Selenium_Test_Suite" class="show-methods failed suite-Selenium_Test_Suite"> (show)</a> <!-- show-methods failed suite-Selenium_Test_Suite -->
-                    </span>
-                    <div class="method-list-content failed suite-Selenium_Test_Suite">
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Selenium_Test_Suite" title="AppTest" class="method navigator-link" hash-for-method="testAddToCartWithEdgeCase">testAddToCartWithEdgeCase</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-Selenium_Test_Suite -->
+                    <span class="method-stats">2 methods,   2 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -115,6 +101,11 @@
                       <a href="#" panel-name="suite-Selenium_Test_Suite" class="show-methods passed suite-Selenium_Test_Suite"> (show)</a> <!-- show-methods passed suite-Selenium_Test_Suite -->
                     </span>
                     <div class="method-list-content passed suite-Selenium_Test_Suite">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Selenium_Test_Suite" title="AppTest" class="method navigator-link" hash-for-method="testAddToCart">testAddToCart</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Selenium_Test_Suite" title="AppTest" class="method navigator-link" hash-for-method="testLogin">testLogin</a> <!-- method navigator-link -->
@@ -132,32 +123,19 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Selenium_Test_Suite" class="panel Selenium_Test_Suite">
-          <div class="suite-Selenium_Test_Suite-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">AppTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="testAddToCartWithEdgeCase">
-                  </a> <!-- testAddToCartWithEdgeCase -->
-                  <span class="method-name">testAddToCartWithEdgeCase</span>
-                  <div class="stack-trace">java.lang.AssertionError: Product quantity did not increase correctly. expected [2] but found [1]
-	at AppTest.testAddToCartWithEdgeCase(AppTest.java:166)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 30 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Selenium_Test_Suite-class-failed -->
           <div class="suite-Selenium_Test_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
               <span class="class-name">AppTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testAddToCart">
+                  </a> <!-- testAddToCart -->
+                  <span class="method-name">testAddToCart</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
                   <a name="testLogin">
@@ -223,11 +201,11 @@ data.addRows(2);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'testLogin')
 data.setCell(0, 2, 'AppTest')
-data.setCell(0, 3, 56283);
+data.setCell(0, 3, 41133);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'testAddToCartWithEdgeCase')
+data.setCell(1, 1, 'testAddToCart')
 data.setCell(1, 2, 'AppTest')
-data.setCell(1, 3, 33668);
+data.setCell(1, 3, 40999);
 window.suiteTableData['Selenium_Test_Suite']= { tableData: data, tableDiv: 'times-div-Selenium_Test_Suite'}
 return data;
 }
@@ -265,17 +243,15 @@ return data;
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">testLogin</span>
-                <span class="method-start">1022 ms</span>
+                <span class="method-start">1017 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">testAddToCartWithEdgeCase</span>
-                <span class="method-start">57309 ms</span>
+                <span class="method-name">testAddToCart</span>
+                <span class="method-start">42154 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">90977 ms</span>
+                <span class="method-start">83153 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
