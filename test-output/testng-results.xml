@@ -1,25 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-29T16:53:31 WIB" name="Selenium Test Suite" finished-at="2024-11-29T16:55:00 WIB" duration-ms="89397">
+  <suite started-at="2024-11-29T19:15:57 WIB" name="Selenium Test Suite" finished-at="2024-11-29T19:17:39 WIB" duration-ms="101166">
     <groups>
     </groups>
-    <test started-at="2024-11-29T16:53:31 WIB" name="Periplus Tests" finished-at="2024-11-29T16:55:00 WIB" duration-ms="89397">
+    <test started-at="2024-11-29T19:15:57 WIB" name="Periplus Tests" finished-at="2024-11-29T19:17:39 WIB" duration-ms="101166">
       <class name="AppTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:AppTest@7a4ccb53]" started-at="2024-11-29T16:53:31 WIB" name="setUp" finished-at="2024-11-29T16:53:32 WIB" duration-ms="1018" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:AppTest@56a6d5a6]" started-at="2024-11-29T19:15:57 WIB" name="setUp" finished-at="2024-11-29T19:15:59 WIB" duration-ms="1014" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testAddToCart()[pri:0, instance:AppTest@7a4ccb53]" started-at="2024-11-29T16:53:32 WIB" name="testAddToCart" finished-at="2024-11-29T16:54:17 WIB" duration-ms="44927" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testAddToCart -->
-        <test-method signature="testLogin()[pri:0, instance:AppTest@7a4ccb53]" started-at="2024-11-29T16:54:17 WIB" name="testLogin" finished-at="2024-11-29T16:54:50 WIB" duration-ms="33258" status="PASS">
+        <test-method signature="testLogin()[pri:0, instance:AppTest@56a6d5a6]" started-at="2024-11-29T19:15:59 WIB" name="testLogin" finished-at="2024-11-29T19:16:55 WIB" duration-ms="56283" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:AppTest@7a4ccb53]" started-at="2024-11-29T16:54:50 WIB" name="tearDown" finished-at="2024-11-29T16:55:00 WIB" duration-ms="10165" status="PASS">
+        <test-method signature="testAddToCartWithEdgeCase()[pri:0, instance:AppTest@56a6d5a6]" started-at="2024-11-29T19:16:55 WIB" name="testAddToCartWithEdgeCase" finished-at="2024-11-29T19:17:28 WIB" depends-on-methods="AppTest.testLogin" duration-ms="33668" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Product quantity did not increase correctly. expected [2] but found [1]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Product quantity did not increase correctly. expected [2] but found [1]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:1419)
+at org.testng.Assert.assertEquals(Assert.java:1383)
+at AppTest.testAddToCartWithEdgeCase(AppTest.java:166)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.TestNG.privateMain(TestNG.java:1430)
+at org.testng.TestNG.main(TestNG.java:1394)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAddToCartWithEdgeCase -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:AppTest@56a6d5a6]" started-at="2024-11-29T19:17:28 WIB" name="tearDown" finished-at="2024-11-29T19:17:39 WIB" duration-ms="10173" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
